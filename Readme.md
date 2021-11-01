@@ -1,75 +1,22 @@
+The app is available at https://nabeel-asghar.github.io/Airspace-Assessment/
 ## Description
 
-Thanks to your [Part 107 Commercial Drone Pilot's license](https://www.faa.gov/uas/), you've been hired by an electrical company to inspect power lines using aerial drone videography. To understand if you are legally allowed to fly in this area, you've requested data from the FAA to indicate what airspace near your flight(s) - if any - is [controlled](https://www.faa.gov/uas/recreational_fliers/where_can_i_fly/airspace_101/) and thus not approved for drone flights. The FAA returned to you an array of coordinates in [geoJson](https://geojson.org/) representing a polygon of controlled airspace, which is a "no fly zone". Your job is to add functionality to an existing web application to provide this insight.
+The process with this app was definitely an interesting one. I spent most of my time researching and looking at documentation rather than coding. A ratio of probably one-to-five for research and coding. Typescript is also somewhat new to me so there was some learning there but all in all, this project took around 4 hours.
+Plotting the graphic and grabbing its vertices was easy enough with IntelliJ’s autocomplete but actually grabbing the intersection took some research in ArcGIS documentation. Once I was able to grab the intersection it was simple to chart it on the no-fly layer.  
 
-## Requirements
+The hard part was calculating the geodesic area of the intersection. Since this function only takes polygons as input and my drawn sketch and intersection sketch were both geometry objects, converting them both to polygons was a long process. Looking through documentation, there was no clear conversion function, rather, I had to break down the geometry object to grab the property of its rings. Using this “rings” property, I was able to create a new polygon which then I was able to calculate the area of.
+Updating the area and intersection when an object was moved was straightforward. I simply recomputed the intersection area using the update event which is passed to the function which computes area and removes the old intersection sketch if it’s an update.  
 
-We have provided a starter web application that has just about everything you need to accomplish the task. The application setup instructions are below. Once you have the app up and running, you will see the polygon of controlled "no fly" airspace on the map. Using the sketch tool you can draw shapes of your various flight areas on the map. After a sketch is complete, your work should display which portion - if any - of the sketch is in controlled airspace (i.e. any area that intersects the controlled airspace polygon).
+Creating a pop-up was quite tedious to be honest until I just decided to create a click listener on the sketch that would display if the sketched area were flyable and the area and intersection area in square kilometers.  
 
-- Search the code for "HINT" - these will help you along
-- Display a message in the `Info` component indicating whether this flight will be denied (**it intersects**) or approved (**it does not intersect**)
-- Display the area (in sq meters or sq kilometers) of the intersection, if any
-- It'd also be great to see the intersection shape highlighted with a different color so that it is easy to visualize
+## Backend
 
-#### Notes
+The backend logic was where I was stumped. I assumed it would be simple to just pass the no-fly zone object and the intersection object to the Node.js backend which would calculate the intersection area there. However, no matter what I tried, ArcGIS would not cooperate in Node.js with import errors and such and that was when I realized by looking at a few Esri videos on YouTube and a helpful email from Corey that a Python backend would be the optimal one.   
 
-If you are applying for the Frontend Developer position, completing the above requirements will suffice. If you are applying for Full Stack Developer, you may want to show your backend skills by spinning up an API to handle the "Can I Fly?" logic. Whether you combine frontend and backend into one challenge is up to you.
+## Future Ideas
+Since I don’t have unlimited time, I decided to just simply have an API call which determine if an area is a fly zone by passing the intersection area to the backend. If I did have more time, I would have added features such as:
+* Unit tests
+* A Python backend server
+* Plot multiple sketches on the map with intersection zones  
 
-At Airspace Link, we feel strongly about good communication. Make sure to provide a short `README.md` which explains your approach. Pay attention to grammar; good writing will always win us over. You also might include a list of ideas you'd love to tackle if you had infinite time to work on the app.
-
-This challenge should not take more than 2-3 hours. You now have the base requirements, but we **strongly** encourage going above and beyond by choosing an extra credit idea below. This is your chance to show off your skills and creativity! We understand that doing your best work can often take significant time, but please try to finish within one week. When it's ready, send us a link to the completed project. Please make your repo private and give access to `fieldsco` and `ddbradshaw`.
-
-#### Extra credit ideas
-
-- Deploy your project to [GitHub Pages](https://pages.github.com/)
-- Update the intersection graphic and computed area when the sketch is moved (i.e. clicked and dragged)
-- Provide a layer control to toggle the visibility of your flight area
-- Add unit/snapshot tests
-- <insert your awesome idea here!>
-
-## Setup instructions
-
-It is assumed that you already have `node` and `yarn` installed on your machine. Google `how to install node` or `how to install yarn` if you need help setting up these environments.
-
-### Clone the repo
-
-`git clone https://github.com/airspace-link-inc/engineering-challenge.git`
-
-### Initialize The Application
-
-`yarn install`
-
-### Start the application
-
-`yarn start`
-
-### Build a deployable version of the app
-
-`yarn build`
-
-### Lint your code
-
-`yarn lint`
-
-### Verify all TypeScripts are in good working order
-
-`yarn tsc`
-
-### Run tests
-
-See documentation on writing tests at [Testing Library](https://testing-library.com/docs/)
-`yarn test`
-
-## Technologies included in this template
-
-- [TypeScript](https://www.typescriptlang.org/): Extends JavaScript to adding data types
-- [React](https://reactjs.org/): Rendering engine for interactive UIs. Includes setup with react-refresh for hot module reloading.
-- [WebPack](https://webpack.js.org/): Bundles the various JavaScript/TypeScript files together into a final "bundled" version for the web server
-- [AntD](https://ant.design/components/overview/): React based UI component library
-- [Styled Components](https://styled-components.com/): Reusable and isolated component styling for React applications
-- [Mobx](https://github.com/mobxjs/mobx): Full featured and reactive state management
-- [SASS](https://sass-lang.com/): CSS Precompiler. Allows you to build css with variables and logic.
-- [ESRI](https://developers.arcgis.com/javascript/latest/): Esri JavaScript map SDK
-- [Babel](https://babeljs.io/): JavaScript "transpiler"
-- [Jest](https://jestjs.io/): Jest is a delightful JavaScript Testing Framework with a focus on simplicity
-- [Testing Library](https://testing-library.com/docs/): Simple and complete testing utilities that encourage good testing practices
+All in all, a very interesting assessment where I learned quite a bit.
