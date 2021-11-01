@@ -1,4 +1,8 @@
-The app is available at https://nabeel-asghar.github.io/Airspace-Assessment/
+The app is available at https://nabeel-asghar.github.io/Airspace-Assessment/  
+
+
+![Engineering Challenge - Google Chrome 2021-11-01 18-06-43](https://user-images.githubusercontent.com/45047300/139748542-01dfe153-4653-49be-a3b7-7a1e30536a2e.gif)
+
 ## Description
 
 The process with this app was definitely an interesting one. I spent most of my time researching and looking at documentation rather than coding. A ratio of probably one-to-five for research and coding. Typescript is also somewhat new to me so there was some learning there but all in all, this project took around 4 hours.
@@ -11,7 +15,9 @@ Creating a pop-up was quite tedious to be honest until I just decided to create 
 
 ## Backend
 
-The backend logic was where I was stumped. I assumed it would be simple to just pass the no-fly zone object and the intersection object to the Node.js backend which would calculate the intersection area there. However, no matter what I tried, ArcGIS would not cooperate in Node.js with import errors and such and that was when I realized by looking at a few Esri videos on YouTube and a helpful email from Corey that a Python backend would be the optimal one.   
+The backend logic was where I was stumped. I assumed it would be simple to just pass the no-fly zone object and the intersection object to the Node.js backend which would calculate the intersection area there. However, no matter what I tried, ArcGIS would not cooperate in Node.js with import errors and such and that was when I realized by looking at a few Esri videos on YouTube and a helpful email from Corey that a Python backend would be the optimal one.
+
+The backend is hosted on Firebase and only has one route: https://us-central1-airspace-link.cloudfunctions.net/api/canIFly which takes in a JSON body ex. {"intersectionArea": 12.45}
 
 ## Future Ideas
 Since I don’t have unlimited time, I decided to just simply have an API call which determine if an area is a fly zone by passing the intersection area to the backend. If I did have more time, I would have added features such as:
