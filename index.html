@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script>
+  {
+    var WS = window.WebSocket;
+    function DevWebSocket(s) {
+      if (s === "ws://localhost:3000/sockjs-node") {
+        console.info("[DEV NOTICE] Live Reload Has Been Disabled");
+        return {};
+      } else {
+        // Pass through other usage of sockets
+        return new WS(s);
+      }
+    }
+    window.WebSocket = DevWebSocket;
+  }
+</script>
+  <head>
+    <meta charset="utf-8" />
+    <title>Engineering Challenge</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css"
+      integrity="sha384-ekOryaXPbeCpWQNxMwSWVvQ0+1VrStoPJq54shlYhR8HzQgig1v5fas6YgOqLoKz"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.20/esri/themes/dark/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.10/antd.compact.min.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
