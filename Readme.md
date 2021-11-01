@@ -11,7 +11,7 @@ Creating a pop-up was quite tedious to be honest until I just decided to create 
 
 ## Backend
 
-The backend logic was where I was stumped. I assumed it would be simple to just pass the no-fly zone object and the intersection object to the Node.js backend which would calculate the intersection area there. However, no matter what I tried, ArcGIS would not cooperate and that was when I realized looking at a few Esri videos on YouTube and a helpful email from Corey that a Python backend would be the optimal one.   
+The backend logic was where I was stumped. I assumed it would be simple to just pass the no-fly zone object and the intersection object to the Node.js backend which would calculate the intersection area there. However, no matter what I tried, ArcGIS would not cooperate in Node.js with import errors and such and that was when I realized by looking at a few Esri videos on YouTube and a helpful email from Corey that a Python backend would be the optimal one.   
 
 ## Future Ideas
 Since I don’t have unlimited time, I decided to just simply have an API call which determine if an area is a fly zone by passing the intersection area to the backend. If I did have more time, I would have added features such as:
