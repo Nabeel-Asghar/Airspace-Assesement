@@ -1,4 +1,4 @@
-The app is available at https://nabeel-asghar.github.io/Airspace-Assesement/
+The app is available at https://nabeel-asghar.github.io/Airspace-Assessment/
 ## Description
 
 The process with this app was definitely an interesting one. I spent most of my time researching and looking at documentation rather than coding. A ratio of probably one-to-five for research and coding. Typescript is also somewhat new to me so there was some learning there but all in all, this project took around 4 hours.
