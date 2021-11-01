@@ -1,5 +1,6 @@
 {
   "name": "react-esri-template",
+  "homepage": "http://Nabeel-Asghar.github.io/Airspace-Assessment",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,7 +8,9 @@
     "start": "webpack serve",
     "build": "NODE_ENV=production webpack",
     "lint": "eslint . --ext .ts,.tsx",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@arcgis/core": "^4.20.2",
@@ -52,6 +55,7 @@
     "eslint": "^7.31.0",
     "eslint-plugin-react": "^7.24.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.3.2",
     "jest": "^27.0.6",
     "less": "^4.1.1",

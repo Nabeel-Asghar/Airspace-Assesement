@@ -7,9 +7,6 @@ import * as geometryEngine from '@arcgis/core/geometry/geometryEngine';
 import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
 import Graphic from '@arcgis/core/Graphic';
 import Polygon from '@arcgis/core/geometry/Polygon';
-import SimpleFillSymbol from '@arcgis/core/symbols/SimpleFillSymbol';
-import Geometry from '@arcgis/core/geometry/Geometry';
-import geometry from '@arcgis/core/geometry';
 import { baseUrl, unit } from '../utils/constants';
 import axios from 'axios';
 
@@ -193,9 +190,14 @@ export default class MapStore {
   };
 
   canItFly = () => {
-    axios.post(baseUrl + '/canIFly', { intersectionArea: this.intersectionArea }).then(res => {
-      this.canFly = res.data.canFly
-    });
+    axios
+      .post(baseUrl + '/canIFly', { intersectionArea: this.intersectionArea })
+      .then(res => {
+        this.canFly = res.data.canFly;
+      })
+      .catch(() => {
+        this.canFly = 'We could not determine if this area is flyable.';
+      });
   };
 
   cleanup() {
